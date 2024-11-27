@@ -1,0 +1,81 @@
+## Lock Scenes
+
+Click "2D" in middle menu. Click "Battle" in middle menu select "Lock". This will lock the scene.
+Do same for Background. Make sure to save `ctrl +s ` so the (*) goes way. 
+
+![Alt text](../../images/02-battle-scene-20.png)
+
+There should be two locks next to the scene name.
+
+![Alt text](../../images/02-battle-scene-19.png)
+
+## Add Script to Scene
+
+Click "Battle" click on "Attach Script". 
+
+![Alt text](../../images/02-battle-scene-21.png)
+
+A window appear "Create Script". Click "Create".
+
+![Alt text](../../images/02-battle-scene-22.png)
+
+add first line in Battle.gd then save with `ctrl + s`.
+
+```sh
+class_name Battle extends Control
+```
+
+## Add a MarginContainer
+
+Click "Battle". Click on "+". Type "MarginContainer". Click "Create".
+
+![Alt text](../../images/03-battle-scene-01.png)
+
+## Add a Theme to the MarginContainer
+
+Click "Battle". in Inspector - Click "Theme" - "New Theme". Click on "Theme" to open.
+
+![Alt text](../../images/03-battle-scene-02.png)
+
+Click "Save as" and name it "battle_theme.tres". Click "Save". 
+
+![Alt text](../../images/03-battle-scene-03.png)
+
+### Add MarginContainer to Theme
+
+In Theme window next to Type: click on "+". Select MarginContainer and click "Add Type".
+Then click the ".c" icon and click "+" to all four "margin_" variables.
+
+![Alt text](../../images/03-battle-scene-04.png)
+
+### Add Font to Theme
+
+Wide the Godot window larger to right. 
+Click down arrow on Default Font. Click "New DynamicFont". 
+
+![Alt text](../../images/03-battle-scene-05.png)
+
+A menu appear. Select "Font" and click "Font Data" then "Load. 
+
+![Alt text](../../images/03-battle-scene-06.png)
+
+Select the dragon-warrior-1.tff file in "Utility/Fonts". Click "Open".
+
+![Alt text](../../images/03-battle-scene-07.png)
+
+Finally click "Settings" and change Size to "8". 
+
+![Alt text](../../images/03-battle-scene-08.png)
+
+### Customize MarginContainer
+
+Select MarginContainer. In Middle Menu click "Layout - Full Rect".
+
+![Alt text](../../images/03-battle-scene-09.png)
+
+### Validate MarginContainer in Theme
+
+Click "MarginContainer. Click "+" add a ColorRect. The ColorRect should 
+have black borders on all sides. This means the Margin in Theme is valid. 
+
+![Alt text](../../images/03-battle-scene-10.png)
