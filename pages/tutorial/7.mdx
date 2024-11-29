@@ -102,3 +102,71 @@ One Monkey should be fade in and out quickly.
 
 ## Use Shader on Hit Effect
 
+In FileSystem under Utility/Shaders. Drag `WhiteColor.tres` to
+EnemyButton.
+
+![Alt text](../../images/07-battle-scene-04-1.png) 
+
+### Transparent EnemyButton sprite
+
+Click EnemyButton. In FileSystem Utility/Arts move `enemy_monkey_transparent.png`
+to folder Battle/Enemies. Drag `enemy_monkey_transparent.png` to EnemyButton. 
+Select Texture Normal. A Transparent Monkey should appear in the black window.
+
+![Alt text](../../images/07-battle-scene-05.png)
+
+Click EnemyButton. In Inspector at Material. WhiteColor.tres should be there.
+Click on WhiteColor.tres to open menu. Shader Param set Active: On. The Monkey 
+sprite should be white. Set Shader Param Active: Off.
+
+![Alt text](../../images/07-battle-scene-06.png)
+
+### Create another AnimationPlayer
+
+Click AnimationPlayer. In Lower menu click Animation - New. Name it "highlight_alt".
+Click EnemyButton. In Lower Menu set Track to 0.
+
+![Alt text](../../images/07-battle-scene-07.png)
+
+Click EnemyButton. In Inspector click "key" icon on Shader Param - Active. Click Create.
+
+![Alt text](../../images/07-battle-scene-08.png)
+
+Click EnemyButton. In Lower Menu drag timeline to 0.2. Rightclick - Insert Key.
+Click key at 0. In Inspector set value to On. Zoom Animation Track with `ctrl + wheel up`.
+
+![Alt text](../../images/07-battle-scene-10-3.png)
+
+In AnimationTrack at "clock" icon change 1 to 0.4. 
+
+![Alt text](../../images/07-battle-scene-10-2.png)
+
+### Change EnemyButton script
+
+Open "EnemyButton.gd". Add code below.
+
+```py {2} filename="EnemyButton.gd"
+func _on_EnemyButton_focus_entered():
+	_animation_player.play("highlight_alt")
+```
+
+Run Game. Click FIGHT. And Click a second time. 
+The Monkey should be fade in and out white.
+
+## Exit Focus on Enemy
+
+### Code
+
+Open "Battle.gd". Edit code below.
+
+```py {4} filename="EnemyButton.gd"
+func _on_EnemiesMenu_button_pressed(enemy_button: EnemyButton) -> void:
+	print("Battle - EnemiesMenu")
+	enemy_button.heal_hurt(-1)
+	_options_menu.button_focus()
+```
+
+### Run
+
+Run Game. Click FIGHT. And Click a second time. 
+The Monkey should be fade in and out white. The focus should be on Options.
