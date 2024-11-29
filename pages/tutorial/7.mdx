@@ -1,52 +1,22 @@
-## Highlight to Enemy
+# Taking Damage & Hit Effects
 
-### Animation
+## EnemyButton 
 
-Close Game. Click EnemyButton. Open Scene. Click "+" at Scene and add AnimationPlayer.
+### Add Process Code
 
-![Alt text](../../images/06-battle-scene-08.png)
-
-In Lower Menu click Animation - New. Name it "highlight". Click OK. A Track should appear.
-
-![Alt text](../../images/06-battle-scene-09.png)
-
-Click EnemyButton. In Inspector click "Visibility". Click "key" icon on Self Modulate. In window Click Create.
-
-![Alt text](../../images/06-battle-scene-10.png)
-
-In Lower Menu click on 0.5. Rightclick and Insert key. A new white dot appear.
-
-![Alt text](../../images/06-battle-scene-11.png)
-
-Click 2D at top. Click the newly created white dot. In Inspector click "Value". Change A (Alpha) to 150. Click outside color window.
-In Lower Menu click "loop" icon at right side. Click "Play" or `shift + d` to play animation. Monkey sprite should fade in and out. 
-Click highlight in Lower Menu and select RESET.
-
-![Alt text](../../images/06-battle-scene-12.png)
-
-### Code
-
-Click EnemyButton. Click "Open Script". Handle reset and play of animations. Add first part of Code below.
-
-```py filename="EnemyButton.gd"
+```py {9-11} filename="EnemyButton.gd"
 class_name EnemyButton extends TextureButton
 
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 # default animation
 func _ready() -> void:
-	print("what")
 	_animation_player.play("RESET")
-```
 
-We will add a signal node. Click EnemyButton. In Node (next to Inspector) double-click focus_entered. Click Connect.
+# called every frame, (_ means not used)
+func _process(_delta: float) -> void:
+	self_modulate.a = randf()
 
-![Alt text](../../images/06-battle-scene-13.png)
-
-Do same for focus_exited. Add code below. There should also be a green arrow next to the functions.
-
-```py filename="EnemyButton.gd"
-...
 func _on_EnemyButton_focus_entered():
 	_animation_player.play("highlight")
 
@@ -54,12 +24,81 @@ func _on_EnemyButton_focus_exited():
 	_animation_player.play("RESET")
 ```
 
-![Alt text](../../images/06-battle-scene-14.png)
+### Add Timer
 
-### Run Game to confirm
+Click EnemyButton. Click "+" add Timer. Rename to Hit.
+Click Hit. In Inspector set Wait Time: 0.5, One Shot to ON.
 
-Close EnemyButton. Click 2D at top. Click Run Game. Click Enter once. Then right and left arrow. Monkey should fade in and out.
+![Alt text](../../images/07-battle-scene-01.png)
 
-![Alt text](../../images/06-battle-scene-15.png)
+### Wait until Hit finish then turn of Hit Effect.
 
+```py {3-6, 13-15, 23-29} filename="EnemyButton.gd"
+class_name EnemyButton extends TextureButton
+
+var hp_max: int = 1
+var hp: int = hp_max
+
+onready var _hit: Timer = $Hit
+onready var _animation_player: AnimationPlayer = $AnimationPlayer
+
+# default animation
+func _ready() -> void:
+	_animation_player.play("RESET")
+
+# Hit effect - called every frame, (_ means not used)
+func _process(_delta: float) -> void:
+	self_modulate.a = randf()
+
+func _on_EnemyButton_focus_entered():
+	_animation_player.play("highlight")
+
+func _on_EnemyButton_focus_exited():
+	_animation_player.play("RESET")
+
+func heal_hurt(value: int) -> void:
+	hp = clamp(hp + value, 0, hp_max)
+	if value < 0:
+		set_process(true)
+		_hit.start()
+		yield(_hit, "timeout")
+		set_process(false)
+		self_modulate.a = 1.0
+```
+
+### Run game (has a bug)
+
+Run game. The Monkey should be fade in and out quickly. Close Game.
+
+![Alt text](../../images/07-battle-scene-02.png)
+
+### Fix the bug
+
+Open "EnemyButton.gd"
+
+```py {3} filename="EnemyButton.gd"
+func _ready() -> void:
+	_animation_player.play("RESET")
+	set_process(false)
+```
+
+### Validate fix
+
+Run Game again. The Monkey should not fade in and out.
+
+## Battle Hit Script
+```py {1,3} filename="Battle.gd"
+func _on_EnemiesMenu_button_pressed(enemy_button: EnemyButton) -> void:
+	print("Battle - EnemiesMenu")
+	enemy_button.heal_hurt(-1)
+```
+
+### Run Game
+
+Run Game. Click FIGHT. And Click a second time. 
+One Monkey should be fade in and out quickly.
+
+![Alt text](../../images/07-battle-scene-03.png)
+
+## Use Shader on Hit Effect
 
