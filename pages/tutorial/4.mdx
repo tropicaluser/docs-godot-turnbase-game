@@ -168,14 +168,14 @@ Battle.
 
 ![Alt text](../../images/04-battle-scene-09.png)
 
-## Validate EnemyButton Scene
+### Validate EnemyButton Scene
 
 Click EnemyButton. Click "Open in Scene" icon. Click 2D at top.
 Validate the Enemy sprite is visible. Close EnemyButton.
 
 ![Alt text](../../images/04-battle-scene-10.png)
 
-## Duplicate EnemyButton
+### Duplicate EnemyButton
 
 Rightclick EnemyButton. Duplicate with `ctrl + d`. More
 Monkey sprite should appear. Make 5 Monkeys.
@@ -188,13 +188,22 @@ Click Enemies. In Inspector click "Alignment: Center"
 
 ## Handle Top
 
-Click Top. In Inspector click "Size Flags" remove Fill in both fields.
+Click Top. In Inspector (1) click "Size Flags" remove Fill in both fields.
+Add "Shrink C". to Horizontal. (2) click "Rect" set min size to x: 180 y: 48.
+Top should be in middle of window. 
 
+![Alt text](../../images/04-battle-scene-12.png)
 
-...
-s VBoxContainer - + - hbox - rename: "Enemies"
-duplicate Enemies - rename: "Bottom"
-rename "NonePatchRect" to "Top"
-add two copies of Top to Bottom
+## Handle Bottom - Tops Container
 
-## Handle Import better graphics
+Click Bottom. In Inspector. Click "Alignment: Center". Rename Top2 to
+Options & Top3 to EnemyInfo.
+
+![Alt text](../../images/04-battle-scene-13.png)
+
+Click Options. In Inspector click "Rect". set min size to x: 60 y: 54.
+Click EnemyInfo. In Inspector click "Rect". set min size to x: 96 y: 54.
+Click VBoxContainer. In Inspector click "Theme Overrides - Constants" set Seperation: 8.
+We should get this layout at end. 
+
+![Alt text](../../images/04-battle-scene-14.png)

@@ -1,0 +1,53 @@
+## Functionality
+
+## Add Movement on Options
+
+Click Battle. Click "Open Script". 
+
+```sh
+class_name Battle extends Control
+
+onready var options: Array = 
+
+func _ready() -> void:
+	pass
+```
+
+Drag Options - VBoxContainer to script under =.
+
+![Alt text](../../images/06-battle-scene-01.png)
+
+
+
+```sh
+onready var options: Array = $MarginContainer/VBoxContainer/Bottom/Options/MarginContainer/VBoxContainer
+```
+
+type after `VBoxContainer.get_children()`
+
+![Alt text](../../images/06-battle-scene-02.png)
+
+
+Add under `_ready` this line. this focus on Options by default.
+
+```sh {5-6} 
+class_name Battle extends Control
+
+onready var _options: Array = $MarginContainer/VBoxContainer/Bottom/Options/MarginContainer/VBoxContainer.get_children()
+
+ func _ready() -> void:
+    _options[0].grab_focus()
+```
+
+Click "RUN" at top-right corner. Move up and down with arrow keys.
+to select different options. Exit with Q, F8 or Stop.
+
+![Alt text](../../images/06-battle-scene-03.png)
+
+## Add Theme on Button
+
+ Lets add Theme focus style on button to make it more visible. Click 
+ Battle. Click Theme battle_theme.tres. In Type click "+" add a Button. 
+
+ ![Alt text](../../images/06-battle-scene-04.png)
+
