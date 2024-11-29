@@ -9,7 +9,7 @@ There should be two locks next to the scene name.
 
 ![Alt text](../../images/02-battle-scene-19.png)
 
-## Add Script to Scene
+## Battle Script to Scene
 
 Click "Battle" click on "Attach Script". 
 
@@ -25,7 +25,7 @@ add first line in Battle.gd then save with `ctrl + s`.
 class_name Battle extends Control
 ```
 
-## Add Theme
+## Battle Theme
 
 Click "Battle". in Inspector - Click "Theme" - "New Theme". Click on "Theme" to open.
 
@@ -61,7 +61,7 @@ Finally click "Settings" and change Size to "8".
 
 ![Alt text](../../images/03-battle-scene-08.png)
 
-## Add a MarginContainer
+## MarginContainer
 
 Click "Battle". Click on "+". Type "MarginContainer". Click "Create".
 
@@ -88,9 +88,9 @@ Click "+" add a NinePatchRect. The Scene window should have two new items.
 
 ![Alt text](../../images/03-battle-scene-11.png)
 
-## Add Image to NinePatchRect
+## NinePatchRect
 
-### Add Image & Folders in FileSystem
+### Add Image & Folders
 
 In FileSystem create a new folder "GUI" under res://. Create
 a subfolder in GUI called "Art". Go into Utility/Arts and move ninepatch_clear.png to "GUI/Art".
@@ -98,7 +98,7 @@ Have this structure at end.
 
 ![Alt text](../../images/03-battle-scene-12.png)
 
-### Handle Import and Make Image NinePatch less blurry
+### Make NinePatch Image less blurry
 
 Rightclick ninepatch_clear.png and select "Open". Inspector show
 a blurry white ring. This is because of import settings. Click next
@@ -120,7 +120,7 @@ or drag image to NinePatchRect, or click [empty] and select "Load" and find the 
 
 ![Alt text](../../images/04-battle-scene-02.png)
 
-## Customize NinePatchRect
+### Customize NinePatchRect
 
 Click NinePatchRect. In Inspector click Patch Margin. Add "3" to all fields.
 The Layout should have a small white border around the black image. But not touching
@@ -130,7 +130,7 @@ import Image from '../../components/image'
 
 <Image testImage="/images/04-battle-scene-03.png" testImageTwo="/images/04-battle-scene-04.png" />
 
-## Add Scene Containers
+## Scene Containers
 
 Click VBoxContainer. Click "+" add a HBoxContainer. Leftclick twice on HBoxContainer and rename to "Enemies".
 
@@ -142,7 +142,7 @@ to "Top". Add two copies of Top to Bottom.
 
 ![Alt text](../../images/04-battle-scene-06.png)
 
-## Add Enemy Object
+### Add Enemy Object
 
 Click Enemies. Click "+" add a TextureButton. 
 Rename TextureButton to EnemyButton.
@@ -152,7 +152,7 @@ should appear in the black window.
 
 <Image testImage="/images/04-battle-scene-07.png" testImageTwo="/images/04-battle-scene-08.png" />
 
-## Add Script to EnemyButton
+## Script to EnemyButton
 
 Click EnemyButton. Click "Attach Script". Select Template: Empty. Click Create. 
 Add code below and save script.
@@ -182,11 +182,11 @@ Monkey sprite should appear. Make 5 Monkeys.
 
 ![Alt text](../../images/04-battle-scene-11.png)
 
-## Center Enemies
+### Center Enemies
 
 Click Enemies. In Inspector click "Alignment: Center"
 
-## Handle Top
+## Top
 
 Click Top. In Inspector (1) click "Size Flags" remove Fill in both fields.
 Add "Shrink C". to Horizontal. (2) click "Rect" set min size to x: 180 y: 48.
@@ -194,7 +194,7 @@ Top should be in middle of window.
 
 ![Alt text](../../images/04-battle-scene-12.png)
 
-## Handle Bottom - Tops Container
+## Bottom
 
 Click Bottom. In Inspector. Click "Alignment: Center". Rename Top2 to
 Options & Top3 to EnemyInfo.
